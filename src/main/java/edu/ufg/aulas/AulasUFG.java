@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package edu.ufg.aulas;
+package edu.ufg.aulas; 
 
 /**
  *
@@ -11,6 +11,6 @@ package edu.ufg.aulas;
 public class AulasUFG {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Arquetipo base de AulasUFG inicializado correctamente.");
     }
 }
