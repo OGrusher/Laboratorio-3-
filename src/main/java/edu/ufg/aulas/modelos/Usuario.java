@@ -6,7 +6,7 @@ import jakarta.persistence.*;
  * Entidad que representa a un usuario del sistema (docente/administrador).
  * Mapeada a la tabla "usuarios" en la base de datos.
  *
- * @author Tatia
+ * @author Maryorie
  */
 @Entity
 @Table(name = "usuarios")

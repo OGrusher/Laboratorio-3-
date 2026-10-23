@@ -6,7 +6,7 @@ import jakarta.persistence.*;
  * Entidad que representa un aula física de la universidad.
  * Mapeada a la tabla "aulas" en la base de datos.
  *
- * @author Tatia
+ * @author Maryorie
  */
 @Entity
 @Table(name = "aulas")
