@@ -19,7 +19,7 @@
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
 
-        <mapping class="edu.ufg.aulas.modelos.Usuario"/>
-        <mapping class="edu.ufg.aulas.modelos.Aula"/>
+        <mapping class="edu.ufg.aulas.entidades.Usuario"/>
+        <mapping class="edu.ufg.aulas.entidades.Aula"/>
     </session-factory>
 </hibernate-configuration>
