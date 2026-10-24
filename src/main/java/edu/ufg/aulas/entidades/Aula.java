@@ -3,13 +3,15 @@ package edu.ufg.aulas.entidades;
 import jakarta.persistence.*;
 
 /**
- * Entidad que representa un aula física de la universidad.
- * Mapeada a la tabla "aulas" en la base de datos.
+ * Entidad que representa un aula de la universidad
+ * Tabla aulas en la base de datos
  *
  * @author Maryorie
  */
 @Entity
-@Table(name = "aulas")
+@Table(name = "aulas",
+        uniqueConstraints = @UniqueConstraint(name = "uk_aula_nombre_edificio",
+                columnNames = {"nombre_aula", "edificio"}))
 public class Aula {
 
     @Id
@@ -23,89 +25,53 @@ public class Aula {
     @Column(name = "edificio", nullable = false, length = 100)
     private String edificio;
 
+    @Column(name = "planta", nullable = false)
+    private int planta;
+
     @Column(name = "capacidad", nullable = false)
     private int capacidad;
 
-    @Column(name = "tiene_proyector", nullable = false)
-    private boolean tieneProyector;
+    // relacion con el tipo de aula
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipo_aula_id", nullable = false)
+    private TipoAula tipoAula;
 
-    @Column(name = "descripcion", length = 255)
-    private String descripcion;
+    @Column(name = "responsable", nullable = false, length = 100)
+    private String responsable;
 
-    // ── Constructores ────────────────────────────────────────────────
+    // relacion con el estado
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "estado_aula_id", nullable = false)
+    private EstadoAula estado;
 
     public Aula() {
     }
 
-    public Aula(String nombreAula, String edificio, int capacidad, boolean tieneProyector, String descripcion) {
+    public Aula(String nombreAula, String edificio, int planta, int capacidad,
+                TipoAula tipoAula, String responsable, EstadoAula estado) {
         this.nombreAula = nombreAula;
         this.edificio = edificio;
+        this.planta = planta;
         this.capacidad = capacidad;
-        this.tieneProyector = tieneProyector;
-        this.descripcion = descripcion;
+        this.tipoAula = tipoAula;
+        this.responsable = responsable;
+        this.estado = estado;
     }
 
-    // ── Getters y Setters ────────────────────────────────────────────
-
-    public Long getIdAula() {
-        return idAula;
-    }
-
-    public void setIdAula(Long idAula) {
-        this.idAula = idAula;
-    }
-
-    public String getNombreAula() {
-        return nombreAula;
-    }
-
-    public void setNombreAula(String nombreAula) {
-        this.nombreAula = nombreAula;
-    }
-
-    public String getEdificio() {
-        return edificio;
-    }
-
-    public void setEdificio(String edificio) {
-        this.edificio = edificio;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
-    }
-
-    public boolean isTieneProyector() {
-        return tieneProyector;
-    }
-
-    public void setTieneProyector(boolean tieneProyector) {
-        this.tieneProyector = tieneProyector;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    // ── toString ─────────────────────────────────────────────────────
-
-    @Override
-    public String toString() {
-        return "Aula{" +
-                "idAula=" + idAula +
-                ", nombreAula='" + nombreAula + '\'' +
-                ", edificio='" + edificio + '\'' +
-                ", capacidad=" + capacidad +
-                ", tieneProyector=" + tieneProyector +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
-    }
+    public Long getIdAula() { return idAula; }
+    public void setIdAula(Long idAula) { this.idAula = idAula; }
+    public String getNombreAula() { return nombreAula; }
+    public void setNombreAula(String nombreAula) { this.nombreAula = nombreAula; }
+    public String getEdificio() { return edificio; }
+    public void setEdificio(String edificio) { this.edificio = edificio; }
+    public int getPlanta() { return planta; }
+    public void setPlanta(int planta) { this.planta = planta; }
+    public int getCapacidad() { return capacidad; }
+    public void setCapacidad(int capacidad) { this.capacidad = capacidad; }
+    public TipoAula getTipoAula() { return tipoAula; }
+    public void setTipoAula(TipoAula tipoAula) { this.tipoAula = tipoAula; }
+    public String getResponsable() { return responsable; }
+    public void setResponsable(String responsable) { this.responsable = responsable; }
+    public EstadoAula getEstado() { return estado; }
+    public void setEstado(EstadoAula estado) { this.estado = estado; }
 }
